@@ -1,3 +1,3 @@
 output "ip" {
-  value = docker_container.wordpress.ip_address
+  value = join(", ", docker_container.wordpress.*.ip_address)
 }

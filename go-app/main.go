@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"fmt"
+	"regexp"
 )
 
 func main() {
@@ -13,6 +15,8 @@ func main() {
 	if err != nil {
 		log.Fatalln("Couldn't open the csv file", err)
 	}
+
+	var digitCheck = regexp.MustCompile(`^[0-9]+$`)
 
 	r := csv.NewReader(csvfile)
 	if _, err := r.Read(); err != nil {
@@ -26,6 +30,10 @@ func main() {
 		}
 		if err != nil {
 			log.Fatal(err)
+		}
+
+		if !digitCheck.MatchString(record[1]) || !digitCheck.MatchString(record[2]) {
+			continue
 		}
 
 		oldVal, err := strconv.Atoi(record[1])

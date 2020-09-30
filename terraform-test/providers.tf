@@ -1,5 +1,5 @@
 provider "docker" {
-  host = "unix:///var/run/docker.soc"
+  host = "unix:///var/run/docker.sock"
 }
 
 

@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"fmt"
 )
 
 func main() {
@@ -28,17 +29,17 @@ func main() {
 			log.Fatal(err)
 		}
 
-		oldVal, err := strconv.Atoi(record[1])
-		if err != nil {
-			log.Fatalln(err)
+		oldVal, olderr := strconv.Atoi(record[1])
+		if olderr != nil {
+			log.Fatal(olderr)
 		}
 
-		newVal, err := strconv.Atoi(record[2])
-		if err != nil {
-			log.Fatalln(err)
+		newVal, newerr := strconv.Atoi(record[2])
+		if newerr != nil {
+			log.Fatal(newerr)
 		}
 
-		if newVal > oldVal {
+		if newerr == nil && olderr == nil && (newVal > oldVal) {
 			fmt.Printf("%s %d\n", record[0], newVal - oldVal)
 		}
 	}

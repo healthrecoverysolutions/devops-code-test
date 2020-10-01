@@ -29,17 +29,17 @@ func main() {
 			log.Fatal(err)
 		}
 
-		oldVal, olderr := strconv.Atoi(record[1])
-		if olderr != nil {
-			log.Fatal(olderr)
+		oldVal, err := strconv.Atoi(record[1])
+		if err != nil {
+			continue;
 		}
 
-		newVal, newerr := strconv.Atoi(record[2])
-		if newerr != nil {
-			log.Fatal(newerr)
+		newVal, err := strconv.Atoi(record[2])
+		if err != nil {
+			continue;
 		}
 
-		if newerr == nil && olderr == nil && (newVal > oldVal) {
+		if newVal > oldVal {
 			fmt.Printf("%s %d\n", record[0], newVal - oldVal)
 		}
 	}

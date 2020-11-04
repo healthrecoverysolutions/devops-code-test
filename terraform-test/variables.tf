@@ -1,4 +1,4 @@
 variable "wordpress_instance_count" {
   type = number
-  default = 4
+  default = 3
 }
